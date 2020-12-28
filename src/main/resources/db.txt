@@ -1,0 +1,16 @@
+CREATE TABLE student (
+	id MEDIUMINT  NOT NULL AUTO_INCREMENT,
+	first_name varchar(256) NULL,
+	last_name varchar(256) NULL,
+	PRIMARY KEY (id)
+);
+
+
+SELECT id, first_name, last_name FROM student;
+
+
+INSERT INTO student
+( first_name, last_name)
+VALUES( '2', '23');
+
+
