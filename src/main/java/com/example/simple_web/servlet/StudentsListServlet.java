@@ -15,7 +15,7 @@ import java.io.IOException;
  **/
 @WebServlet(name = "studentsListServlet", value = {"", "/students"})
 public class StudentsListServlet extends HttpServlet {
-    private DbManager dbManager = new DbManager();
+    private DbManager dbManager = DbManager.instance();
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

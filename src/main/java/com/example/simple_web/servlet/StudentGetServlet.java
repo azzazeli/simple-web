@@ -10,7 +10,7 @@ import javax.servlet.annotation.*;
 
 @WebServlet(name = "studentGetServlet", value = "/student_get")
 public class StudentGetServlet extends HttpServlet {
-    private DbManager dbManager = new DbManager();
+    private DbManager dbManager = DbManager.instance();
 
     public void init() {
     }

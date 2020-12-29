@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @WebServlet(name = "studentDeleteServlet", value = "/student_delete")
 public class StudentDeleteServlet extends HttpServlet {
-    private DbManager dbManager = new DbManager();
+    private DbManager dbManager = DbManager.instance();
 
     public void init() {
     }

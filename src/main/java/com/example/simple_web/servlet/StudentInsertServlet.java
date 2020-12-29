@@ -16,7 +16,7 @@ import java.io.IOException;
  **/
 @WebServlet(name = "studentInsertServlet", value = "/student_insert")
 public class StudentInsertServlet extends HttpServlet {
-    private DbManager dbManager = new DbManager();
+    private DbManager dbManager = DbManager.instance();
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

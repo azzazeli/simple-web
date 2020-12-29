@@ -11,13 +11,21 @@ import java.util.List;
  * Date: 12/19/20
  **/
 public class DbManager {
-    //todo: must be singleton with one time init for driver
-    static {
+    private static DbManager INSTANCE;
+
+    private DbManager() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public synchronized static DbManager instance() {
+        if (INSTANCE == null) {
+            INSTANCE = new DbManager();
+        }
+        return INSTANCE;
     }
 
     // connection string
@@ -92,7 +100,7 @@ public class DbManager {
 
         try (Connection connection = dbcon();
              PreparedStatement pstmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ) {
+        ) {
             pstmt.setString(1, firstName);
             pstmt.setString(2, lastName);
 
@@ -100,7 +108,7 @@ public class DbManager {
             // this will check the affected row(s)
             if (rowsAffected > 0) {
                 // then we get the ID of the affected row(s)
-                try(ResultSet rs = pstmt.getGeneratedKeys()) {
+                try (ResultSet rs = pstmt.getGeneratedKeys()) {
                     if (rs.next()) {
                         id = rs.getLong(1);
                     }
